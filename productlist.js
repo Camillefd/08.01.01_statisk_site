@@ -1,4 +1,4 @@
-const listURL = "https://kea-alt-del.dk/t7/api/products?limit=6";
+const listURL = "https://kea-alt-del.dk/t7/api/products";
 const listContainer = document.querySelector("#productListContainer");
 
 function getProducts() {
@@ -18,9 +18,7 @@ function showProducts(products) {
         <a href="product.html">
         <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="Produktbillede">
         </a>
-      <p class="price">
-        <p>Pris: ${product.price}</p>
-        </p>
+        <p class="price">Pris: ${product.price}</p>
          <button>Køb nu</button>
       </article>
     `;
