@@ -1,8 +1,16 @@
-const listURL = "https://kea-alt-del.dk/t7/api/products";
+const params = new URLSearchParams(window.location.search);
+const myCategory = params.get("category");
+
+console.log(myCategory);
+
+/// const listURL = "https://kea-alt-del.dk/t7/api/products";
 const listContainer = document.querySelector("#productListContainer");
+/// const fetchURL = `https://kea-alt-del.dk/t7/api/products?category=${myCategory}`;
+
+const fetchURL = myCategory ? `https://kea-alt-del.dk/t7/api/products?category=${encodeURIComponent(myCategory)}` : "https://kea-alt-del.dk/t7/api/products";
 
 function getProducts() {
-  fetch(listURL).then((res) => res.json().then((products) => showProducts(products)));
+  fetch(fetchURL).then((res) => res.json().then((products) => showProducts(products)));
 }
 
 function showProducts(products) {
@@ -15,7 +23,7 @@ function showProducts(products) {
        <article class="product">
         <h3>${product.productdisplayname}</h3>
         <h4>${product.brandname}</h4>
-        <a href="product.html">
+        <a href="product.html?id=${product.id}">
         <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="Produktbillede">
         </a>
         <p class="price">Pris: ${product.price}</p>
