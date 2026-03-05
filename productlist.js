@@ -26,8 +26,15 @@ function showProducts(products) {
         <a href="product.html?id=${product.id}">
         <img src="https://kea-alt-del.dk/t7/images/webp/640/${product.id}.webp" alt="Produktbillede">
         </a>
-        <p class="price">Pris: ${product.price}</p>
-         <button>Køb nu</button>
+             <p class="price">
+      ${
+        product.discount > 0
+          ? `<span class="original-pris">Pris: ${product.price} ,-</span>
+           <span class="tilbud-pris">${(product.price * (1 - product.discount / 100)).toFixed(2)} ,-</span>`
+          : `<span>Pris: ${product.price} ,-</span>`
+      }
+    </p>
+         <button> ${product.soldout === 1 ? `<p class="soldout"> Udsolgt </p>` : `<p> Køb nu </p>`} </button>
       </article>
     `;
   });
