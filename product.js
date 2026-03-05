@@ -18,7 +18,14 @@ function show(data) {
     <div class="tekst">
     <h3>${data.productdisplayname}</h3>
     <h4>${data.brandname}</h4>
-    <p>Pris: ${data.price}</p>
+             <p class="price">
+      ${
+        data.discount > 0
+          ? `<span class="original-pris">Pris: ${data.price} ,-</span>
+           <span class="tilbud-pris2">${(data.price * (1 - data.discount / 100)).toFixed(2)} ,-</span>`
+          : `<span>Pris: ${data.price} ,-</span>`
+      }
+    </p>
     <p>Lager status: ${data.soldout}</p>
     <button> Køb nu </button>
     </div>
